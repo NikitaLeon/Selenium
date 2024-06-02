@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PhormTest {
     private WebDriver driver;
@@ -47,6 +48,9 @@ public class PhormTest {
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.cssSelector("button.button")).click();
         var actualElement = driver.findElement(By.cssSelector("[data-test-id=order-success]"));
+        var actualText = actualElement.getText().trim();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
+        assertTrue(actualElement.isDisplayed());
 
     }
 
